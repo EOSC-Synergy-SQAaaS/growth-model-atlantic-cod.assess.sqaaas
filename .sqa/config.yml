@@ -1,0 +1,58 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.4
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod:
+      branch: master
+      repo: https://gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-olivine-shrew.sh
+        container: qc.acc_gimpy-asparagus-camel
+  QC.Doc:
+    repos:
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skinny-bronze-leopard.sh
+        container: qc.doc_zippy-amber-rattlesnake
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-amber-tzu.sh
+        container: qc.doc_nippy-chestnut-coyote
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-denim-paradise.sh
+        container: qc.doc_droopy-brown-moose
+  QC.Lic:
+    repos:
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.silly-cobalt-bear.sh
+        container: qc.lic_lanky-rose-shark
+  QC.Sec:
+    repos:
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-lemon-walrus.sh
+        container: qc.sec_homey-apricot-swan
+  QC.Sty:
+    repos:
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-auburn-loon.sh
+        container: qc.sty_blurry-amethyst-alligator
+  QC.Ver:
+    repos:
+      gitlab.hzdr.de/awi_paleodyn/growth-model-atlantic-cod get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-chocolate-bear.sh
+        container: qc.ver_hazy-rose-javanese
+timeout: 1800
